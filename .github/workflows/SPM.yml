@@ -17,7 +17,5 @@ jobs:
       run: swift build -v
     - name: Run tests
       run: swift test --enable-code-coverage
-    - name: Prepare tests
-      run: xcrun llvm-cov export -format="text" .build/x86_64-apple-macosx/debug/MultiSetPackageTests.xctest/Contents/MacOS/MultiSetPackageTests -instr-profile=.build/x86_64-apple-macosx/debug/codecov/default.profdata > coverage.json
     - name: Run codeconv
-      run: bash <(curl -s https://codecov.io/bash) -J 'MultiSet' -f coverage.json
+      run: bash <(curl -s https://codecov.io/bash)  -f  `swift test --show-codecov-path` 
